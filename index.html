@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #ffe6ef;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    #yesBtn {
+      background: #ff4d88;
+      color: white;
+    }
+
+    #noBtn {
+      background: #ddd;
+      color: #444;
+    }
+
+    .meme {
+      display: none;
+      font-size: 22px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <h1>Will you be my Valentine? 💌</h1>
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 🙃</button>
+
+    <div class="meme" id="meme">
+      🎉 YAY! <br><br>
+      <strong>Saanvi will be my Valentine 💘</strong>
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const meme = document.getElementById("meme");
+
+    function acceptLove() {
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+      meme.style.display = "block";
+    }
+
+    yesBtn.addEventListener("click", acceptLove);
+
+    noBtn.addEventListener("click", () => {
+      // No is an illusion 😌
+      acceptLove();
+    });
+  </script>
+
+</body>
+</html>
