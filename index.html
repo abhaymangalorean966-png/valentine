@@ -4,9 +4,13 @@
   <meta charset="UTF-8" />
   <title>Be My Valentine 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <style>
     body {
-      background: #ffe6ef;
+      background: linear-gradient(135deg, #ffd6e8, #ffeef5);
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
@@ -20,8 +24,8 @@
       padding: 30px;
       border-radius: 20px;
       text-align: center;
-      width: 320px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      width: 330px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
       position: relative;
       overflow: hidden;
     }
@@ -38,6 +42,7 @@
       border-radius: 25px;
       cursor: pointer;
       margin: 10px;
+      transition: transform 0.2s;
     }
 
     #yesBtn {
@@ -55,8 +60,8 @@
     }
 
     @keyframes dodge {
-      0% { left: 30%; }
-      100% { left: 70%; }
+      0% { left: 25%; }
+      100% { left: 75%; }
     }
 
     .meme {
@@ -73,36 +78,54 @@
 </head>
 <body>
 
-  <div class="card" id="card">
+  <div class="card">
     <h1>Will you be my Valentine? 💌</h1>
 
     <button id="yesBtn">Yes 💖</button>
     <button id="noBtn">No 🙃</button>
 
     <div class="meme" id="meme">
-      <h2>🎉 YAY! 🎉</h2>
+      <h2>🎉 YAYYYY 🎉</h2>
       <p><strong>Saanvi will be my Valentine 💘</strong></p>
       <img src="https://i.imgflip.com/4t0m5.jpg" alt="Yay meme">
     </div>
   </div>
 
+  <!-- Background music -->
+  <audio id="bgMusic" src="https://www.bensound.com/bensound-music/bensound-love.mp3"></audio>
+
   <script>
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
     const meme = document.getElementById("meme");
+    const music = document.getElementById("bgMusic");
+
+    let noScale = 1;
 
     function acceptLove() {
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
       meme.style.display = "block";
+
+      music.play();
+
+      confetti({
+        particleCount: 200,
+        spread: 90,
+        origin: { y: 0.6 }
+      });
     }
 
     yesBtn.addEventListener("click", acceptLove);
 
     noBtn.addEventListener("mouseover", () => {
-      // Random dodge when hovering
-      const randomLeft = Math.random() * 60 + 20;
-      noBtn.style.left = randomLeft + "%";
+      const randomX = Math.random() * 60 + 20;
+      const randomY = Math.random() * 40 + 40;
+      noBtn.style.left = randomX + "%";
+      noBtn.style.top = randomY + "%";
+
+      noScale -= 0.1;
+      noBtn.style.transform = translateX(-50%) scale(${noScale});
     });
 
     noBtn.addEventListener("click", acceptLove);
