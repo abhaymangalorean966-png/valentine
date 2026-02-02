@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
   <style>
     body {
       background: #ffe6ef;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -20,8 +20,10 @@
       padding: 30px;
       border-radius: 20px;
       text-align: center;
-      width: 300px;
+      width: 320px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
     }
 
     h1 {
@@ -46,12 +48,26 @@
     #noBtn {
       background: #ddd;
       color: #444;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: dodge 1.5s infinite alternate ease-in-out;
+    }
+
+    @keyframes dodge {
+      0% { left: 30%; }
+      100% { left: 70%; }
     }
 
     .meme {
       display: none;
-      font-size: 22px;
       margin-top: 20px;
+    }
+
+    .meme img {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 15px;
     }
   </style>
 </head>
@@ -59,12 +75,14 @@
 
   <div class="card" id="card">
     <h1>Will you be my Valentine? 💌</h1>
+
     <button id="yesBtn">Yes 💖</button>
     <button id="noBtn">No 🙃</button>
 
     <div class="meme" id="meme">
-      🎉 YAY! <br><br>
-      <strong>Saanvi will be my Valentine 💘</strong>
+      <h2>🎉 YAY! 🎉</h2>
+      <p><strong>Saanvi will be my Valentine 💘</strong></p>
+      <img src="https://i.imgflip.com/4t0m5.jpg" alt="Yay meme">
     </div>
   </div>
 
@@ -81,10 +99,13 @@
 
     yesBtn.addEventListener("click", acceptLove);
 
-    noBtn.addEventListener("click", () => {
-      // No is an illusion 😌
-      acceptLove();
+    noBtn.addEventListener("mouseover", () => {
+      // Random dodge when hovering
+      const randomLeft = Math.random() * 60 + 20;
+      noBtn.style.left = randomLeft + "%";
     });
+
+    noBtn.addEventListener("click", acceptLove);
   </script>
 
 </body>
